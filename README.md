@@ -19,6 +19,10 @@ domain experts, engineering rules, and decision-record discipline in this repo.
 
 ## Architecture
 
+<p align="center">
+  <img src="docs/factory-wiring-diagram.png" alt="AI Software Factory — Gas City autonomous pipeline: ten scale-to-zero agents driving a bead from intake to a human-merge PR" width="720">
+</p>
+
 One **city** (the factory) hosts many **rigs** (projects); this pack is imported per-rig
 as `factory`. A unit of work — a **bead** — flows one direction through ten role-specialized
 agents, and **two lanes** decide how much human oversight it gets:
