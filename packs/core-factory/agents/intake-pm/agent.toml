@@ -1,0 +1,12 @@
+# intake-pm — front gate: triage + refine + Grill-Me.
+# Model tier: Haiku (light triage). To pin a model, set `provider` to a
+# provider defined in city.toml; left at workspace default for now.
+scope = "rig"
+prompt_template = "agents/intake-pm/prompt.template.md"
+wake_mode = "fresh"
+work_dir = ".gc/agents/{{.Rig}}/intake-pm"
+nudge = "Run gc prime, read the routed step, refine and triage the bead, then close the step."
+idle_timeout = "1h"
+min_active_sessions = 0
+max_active_sessions = 1
+default_sling_formula = "mol-core-delivery"

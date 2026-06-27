@@ -1,0 +1,14 @@
+# repool-routed — re-pool OPEN routed step beads that the graph.v2 control-dispatcher
+# pre-assigned to a scale-to-zero pool session that was never spawned.
+#
+# Such a bead sits open + gc.routed_to=<pool> + assignee=<pool-session-name>. The
+# session-reconciler counts only open+routed+UNASSIGNED beads as pool work, so an
+# assigned-but-unspawned bead deadlocks (scale_check=0, no agent ever starts). The
+# builtin orphan-sweep only covers in_progress beads, so it never clears these.
+# This sweep clears the stale assignee (keeping the route) so the pool agent spawns.
+# Guards against re-pooling work a live session is actively claiming. Exec order, no LLM.
+[order]
+description = "Re-pool open routed beads pre-assigned to unspawned pool sessions"
+trigger = "cooldown"
+interval = "20s"
+exec = "$PACK_DIR/assets/scripts/repool-routed.sh"

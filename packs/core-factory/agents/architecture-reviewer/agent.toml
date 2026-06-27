@@ -1,0 +1,16 @@
+# architecture-reviewer — external-review gate, now AUTOMATED on Codex (OpenAI). Codex
+# is the external reviewer the operator used to paste the packet into; it performs the
+# architectural review itself, records the feedback, and routes any required changes
+# back to the architect. The operator still owns the final ADR Proposed → Accepted move
+# (the agent never self-accepts). Requires the `codex` CLI installed + authenticated on
+# the host; the per-provider codex overlay supplies the session hooks.
+provider = "codex"
+scope = "rig"
+prompt_template = "agents/architecture-reviewer/prompt.template.md"
+wake_mode = "fresh"
+work_dir = ".gc/agents/{{.Rig}}/architecture-reviewer"
+nudge = "Run gc prime, read the routed step and the ADR; (major) review the packet yourself, record feedback in docs/reviews/<id>.md, return to architect if changes are needed, else ask the operator to move the ADR Proposed → Accepted. Never self-accept."
+idle_timeout = "1h"
+min_active_sessions = 0
+max_active_sessions = 1
+default_sling_formula = "mol-core-delivery"

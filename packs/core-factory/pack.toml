@@ -1,0 +1,17 @@
+# core-factory — our bespoke software-factory pack.
+#
+# NOT the sf-tutorial layout (polecat/refinery/project-manager). This is the
+# hybrid pipeline we designed: autonomous for routine/minor changes, human-driven
+# for major/architectural ones. Nine agents wired to the experts, rules, and
+# ADR/PD discipline in the parent factory-skills repo.
+#
+# Agents are auto-discovered from agents/<name>/ (schema 2).
+#
+# Import per-rig AS "factory" so the formula's `factory.<agent>` run targets
+# resolve:
+#   gc import add --rig <rig> --name factory <path>/packs/core-factory
+
+[pack]
+name = "core-factory"
+schema = 2
+version = "0.1.0"

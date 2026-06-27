@@ -1,0 +1,10 @@
+{
+  "extraKnownMarketplaces": {
+    "inhabited-design": {
+      "source": { "source": "github", "repo": "Shimin-Zhang/inhabited-design" }
+    }
+  },
+  "enabledPlugins": {
+    "inhabited-design@inhabited-design": true
+  }
+}

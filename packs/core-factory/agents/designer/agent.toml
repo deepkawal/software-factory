@@ -1,0 +1,14 @@
+# designer — UI/UX design via the inhabited-design Claude Code plugin.
+# Gated to beads with metadata.needs_design=true; runs the plugin in lite mode.
+# Model tier: Opus/Sonnet (vision-capable — REQUIRED by the plugin). Token-heavy,
+# so the prompt gates it hard. Requires the plugin installed + a headless browser
+# + web search available in the agent's session.
+scope = "rig"
+prompt_template = "agents/designer/prompt.template.md"
+wake_mode = "fresh"
+work_dir = ".gc/agents/{{.Rig}}/designer"
+nudge = "Run gc prime; if metadata.needs_design=true, run /inhabited-design lite and write docs/designs/<slug>/, then close the step. Otherwise pass through."
+idle_timeout = "1h"
+min_active_sessions = 0
+max_active_sessions = 1
+default_sling_formula = "mol-core-delivery"

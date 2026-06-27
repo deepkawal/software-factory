@@ -1,0 +1,11 @@
+# builder — implements on a feature branch, loads the right expert, marks decisions.
+# Model tier: Sonnet (routine engineering). Build pool.
+scope = "rig"
+prompt_template = "agents/builder/prompt.template.md"
+wake_mode = "fresh"
+work_dir = ".gc/agents/{{.Rig}}/builder/{{.AgentBase}}"
+nudge = "Run gc prime, read the routed step and plan, implement on a feature branch, push, then close the step."
+idle_timeout = "2h"
+min_active_sessions = 0
+max_active_sessions = 3
+default_sling_formula = "mol-core-delivery"

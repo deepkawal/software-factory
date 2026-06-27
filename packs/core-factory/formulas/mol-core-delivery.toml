@@ -1,0 +1,96 @@
+description = """
+Core delivery graph — turns one work bead into shipped, reviewed change.
+
+Hybrid pipeline: autonomous for routine/minor work, human-driven for major
+changes. The graph owns the order of work. Three review stages — Product,
+Architecture, Code — each owning one record type (PD, ADR, code markers).
+
+Lane control is the `change_class` metadata the intake-pm sets:
+- minor → the architect + architecture-review steps pass through fast.
+- major → the architect authors/updates an ADR plus a self-contained review
+  packet, and architecture-review is a MANUAL external gate: the operator reviews
+  the packet outside the factory (e.g. ChatGPT) and the ADR must move
+  Proposed → Accepted before build.
+
+Shared assets live in the sibling factory-skills repo (../factory-skills):
+experts/, rules/ (group-rules.md + engineering-principles.md), and
+tools/decisions.mjs. Decision records live in the rig: docs/decisions/ (ADRs),
+docs/product-decisions/ (PDs).
+"""
+formula = "mol-core-delivery"
+version = 1
+contract = "graph.v2"
+
+[vars]
+[vars.issue]
+description = "The work bead to deliver"
+required = true
+
+[[steps]]
+id = "intake"
+title = "Triage and refine the request"
+description = "intake-pm reads the request, runs Grill-Me, sets metadata.change_class (minor|major), and confirms acceptance criteria are concrete."
+metadata = { "gc.run_target" = "factory.intake-pm" }
+
+[[steps]]
+id = "product-review"
+title = "Product review — business rules → PDs"
+needs = ["intake"]
+description = "product-reviewer checks whether the request introduces or changes a business rule; if so, drafts/updates a Product Decision in docs/product-decisions/ and routes it for human approval."
+metadata = { "gc.run_target" = "factory.product-reviewer" }
+
+[[steps]]
+id = "plan"
+title = "Write the delivery plan"
+needs = ["product-review"]
+description = "planner decomposes the bead into a task plan with acceptance criteria and writes docs/plans/<slug>.md."
+metadata = { "gc.run_target" = "factory.planner", artifact_path = "docs/plans/<slug>.md" }
+
+[[steps]]
+id = "architect"
+title = "Architecture + ADR (major lane)"
+needs = ["plan"]
+description = "architect: for major changes, design the approach, author/update an ADR (Proposed) in docs/decisions/ with alternatives and consequences, and write a self-contained review packet (docs/reviews/<id>-review-packet.md) for external review. For minor changes, confirm no architectural decision is introduced and pass through."
+metadata = { "gc.run_target" = "factory.architect", artifact_path = "docs/decisions/<id>.md" }
+
+[[steps]]
+id = "architecture-review"
+title = "Architecture review — manual external gate for major"
+needs = ["architect"]
+description = "architecture-reviewer (major) verifies the architect's review packet, hands it to the operator for external review (e.g. ChatGPT), parks for human approval, and records the returned feedback in docs/reviews/<id>.md. The ADR must move Proposed → Accepted before build proceeds. Minor passes fast."
+metadata = { "gc.run_target" = "factory.architecture-reviewer" }
+
+[[steps]]
+id = "design"
+title = "UI/UX design (gated to needs_design)"
+needs = ["architecture-review"]
+description = "designer: if metadata.needs_design=true, produce a polished UI/UX design with the inhabited-design plugin (lite mode) under docs/designs/<slug>/ and note it on the bead. Otherwise pass through. Token-heavy — gated to UI work + operator opt-in."
+metadata = { "gc.run_target" = "factory.designer", artifact_path = "docs/designs/<slug>/index.html" }
+
+[[steps]]
+id = "build"
+title = "Implement on a feature branch"
+needs = ["design"]
+description = "builder loads the relevant *-expert for the work, implements on a feature branch (against the design when present), adds // <PREFIX>-ADR/PD markers to code created by a decision, and pushes."
+metadata = { "gc.run_target" = "factory.builder" }
+
+[[steps]]
+id = "code-review"
+title = "Code review — quality + markers"
+needs = ["build"]
+description = "code-reviewer reviews the diff for correctness/quality, verifies every embedded decision carries a marker (no undocumented decisions), runs `decisions check`, and approves or returns feedback (bounded loop)."
+metadata = { "gc.run_target" = "factory.code-reviewer" }
+
+[[steps]]
+id = "validate"
+title = "Validate — tests + decisions gate"
+needs = ["code-review"]
+description = "validator runs the rig's tests/typecheck/build and `node ../factory-skills/tools/decisions.mjs check`, and verifies the bead's acceptance criteria. Gate: no merge without green."
+metadata = { "gc.run_target" = "factory.validator" }
+
+[[steps]]
+id = "release"
+title = "Open PR — human merge gate"
+needs = ["validate"]
+description = "release-gate opens a pull request and stops. A human reviews and merges to main (branch protection). The factory never self-merges."
+metadata = { "gc.run_target" = "factory.release-gate" }

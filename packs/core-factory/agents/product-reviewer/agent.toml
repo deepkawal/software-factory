@@ -1,0 +1,11 @@
+# product-reviewer — reviews requirements/product intent; owns Product Decisions.
+# Model tier: Sonnet.
+scope = "rig"
+prompt_template = "agents/product-reviewer/prompt.template.md"
+wake_mode = "fresh"
+work_dir = ".gc/agents/{{.Rig}}/product-reviewer"
+nudge = "Run gc prime, read the routed step; if a business rule is introduced, record/route a PD, then close the step."
+idle_timeout = "1h"
+min_active_sessions = 0
+max_active_sessions = 1
+default_sling_formula = "mol-core-delivery"

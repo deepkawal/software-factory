@@ -1,0 +1,11 @@
+# planner — decompose the bead into a task plan with acceptance criteria.
+# Model tier: Sonnet (routine).
+scope = "rig"
+prompt_template = "agents/planner/prompt.template.md"
+wake_mode = "fresh"
+work_dir = ".gc/agents/{{.Rig}}/planner"
+nudge = "Run gc prime, read the routed step, write docs/plans/<slug>.md, then close the step."
+idle_timeout = "1h"
+min_active_sessions = 0
+max_active_sessions = 1
+default_sling_formula = "mol-core-delivery"

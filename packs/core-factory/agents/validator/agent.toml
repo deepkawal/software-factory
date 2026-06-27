@@ -1,0 +1,11 @@
+# validator — runs tests + decisions check; verifies acceptance criteria. Gate.
+# Model tier: Sonnet.
+scope = "rig"
+prompt_template = "agents/validator/prompt.template.md"
+wake_mode = "fresh"
+work_dir = ".gc/agents/{{.Rig}}/validator"
+nudge = "Run gc prime, read the routed step, run the rig's tests + decisions check, gate on green."
+idle_timeout = "1h"
+min_active_sessions = 0
+max_active_sessions = 1
+default_sling_formula = "mol-core-delivery"

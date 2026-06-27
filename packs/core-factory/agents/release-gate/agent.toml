@@ -1,0 +1,11 @@
+# release-gate — opens the PR and stops at the human merge gate. Never self-merges.
+# Model tier: Sonnet.
+scope = "rig"
+prompt_template = "agents/release-gate/prompt.template.md"
+wake_mode = "fresh"
+work_dir = ".gc/agents/{{.Rig}}/release-gate"
+nudge = "Run gc prime, read the routed step, open a PR for the validated branch, then stop for human merge."
+idle_timeout = "1h"
+min_active_sessions = 0
+max_active_sessions = 1
+default_sling_formula = "mol-core-delivery"

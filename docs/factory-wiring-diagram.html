@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #ffffff;
+    color: #1a1a2e;
+    width: 1180px;
+    padding: 34px 40px 30px;
+  }
+  h1 { text-align: center; font-size: 27px; font-weight: 700; letter-spacing: .2px; }
+  .sub { text-align: center; font-size: 14.5px; color: #5a5a6e; margin-top: 5px; margin-bottom: 4px; }
+  .flow { text-align: center; font-size: 13px; color: #8a8a9a; margin-bottom: 16px; font-weight: 600; }
+
+  .row { display: flex; align-items: stretch; margin: 0; }
+  .lane {
+    width: 118px; flex: 0 0 118px; display: flex; flex-direction: column;
+    justify-content: center; padding-right: 12px;
+    font-size: 12px; font-weight: 700; color: #6b6b7b; letter-spacing: .4px; text-align: right;
+  }
+  .lane small { display:block; font-weight:500; color:#a0a0b0; font-size:10px; letter-spacing:0; margin-top:2px;}
+  .cards { flex: 1; display: flex; gap: 12px; padding: 7px 0; }
+  .card {
+    flex: 1; border-radius: 11px; padding: 11px 14px; border: 1.5px solid rgba(0,0,0,.06);
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  }
+  .card .cmd { font-weight: 700; font-size: 14.5px; }
+  .card .desc { font-size: 11.5px; color: #44444f; margin-top: 3px; line-height: 1.32; }
+  .card .tags { margin-top: 6px; font-size: 10px; font-weight: 700; letter-spacing:.3px; }
+  .tag { display:inline-block; padding: 1px 6px; border-radius: 5px; margin-right: 4px; }
+  .t-opus  { background:#efe2ff; color:#7b3fd0; }
+  .t-sonnet{ background:#e2eeff; color:#3f6fd0; }
+  .t-haiku { background:#e6f6ea; color:#3a9a55; }
+  .t-R     { background:#fff0d6; color:#c07a18; }
+  .t-G     { background:#ffe2e2; color:#c0392b; }
+  .t-human { background:#1a1a2e; color:#fff; }
+  .t-new   { background:#d6f5ec; color:#0f8a6a; }
+  .t-exp   { background:#ececf5; color:#555; }
+
+  /* phase palettes */
+  .p-think  { background:#ede4fb; }
+  .p-prod   { background:#e3f2e6; }
+  .p-plan   { background:#e3f2e6; }
+  .p-arch   { background:#fde3ec; }
+  .p-design { background:#fde3ec; }
+  .p-build  { background:#e9e9ee; }
+  .p-review { background:#e2ecfb; }
+  .p-test   { background:#fdeccf; }
+  .p-ship   { background:#e3f2e6; }
+  .p-reflect{ background:#ede4fb; }
+  .p-layer  { background:#f3ead9; }
+
+  .arrow { text-align: center; color: #b5b5c2; font-size: 16px; line-height: 8px; padding: 1px 0; margin-left: 118px; }
+  .arrow span { font-size: 11px; color:#9a9aaa; }
+
+  .divider { border:0; border-top:1.5px dashed #d8d8e2; margin: 16px 0 10px; }
+  .layer-title { font-size: 12px; font-weight: 700; color:#6b6b7b; letter-spacing:.4px; margin: 4px 0 0 0; }
+  .legend { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:18px; font-size:11px; color:#55555f; }
+  .legend b { font-weight:700; }
+  .ghost { opacity:.55; border-style:dashed; }
+</style>
+</head>
+<body>
+  <h1>AI Software Factory — Gas City Autonomous Pipeline</h1>
+  <div class="sub">Sling → Triage → Product → Plan → Architect → Design → Build → Review → Validate → Ship → Reflect</div>
+  <div class="flow">one <code>gc sling</code> → 10 scale-to-zero agents drive a bead to a human-merge PR · the graph owns the order · ⊕ = operator skill you invoke</div>
+
+  <!-- TRIAGE -->
+  <div class="row">
+    <div class="lane">THINK<small>/ intake</small></div>
+    <div class="cards">
+      <div class="card p-think">
+        <div class="cmd">factory.intake-pm</div>
+        <div class="desc">Triage + Grill-Me. Sets <b>change_class</b> (minor/major) &amp; <b>needs_design</b> — these pick the lanes.</div>
+        <div class="tags"><span class="tag t-haiku">Haiku</span><span class="tag t-exp">front gate</span></div>
+      </div>
+      <div class="card p-think ghost">
+        <div class="cmd">⊕ phase-0 discovery</div>
+        <div class="desc"><b>startup:*</b> skills + <b>manifest-generator</b> for a NEW project (office-hours / CEO-review equivalent). Feeds the first sling.</div>
+        <div class="tags"><span class="tag t-new">operator</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- PRODUCT + PLAN -->
+  <div class="row">
+    <div class="lane">PLAN</div>
+    <div class="cards">
+      <div class="card p-prod">
+        <div class="cmd">factory.product-reviewer</div>
+        <div class="desc">Does this change a business rule? If so, drafts/updates a <b>Product Decision</b> (PD) → human approval.</div>
+        <div class="tags"><span class="tag t-sonnet">Sonnet</span><span class="tag t-R">reviewer · owns PDs</span></div>
+      </div>
+      <div class="card p-plan">
+        <div class="cmd">factory.planner</div>
+        <div class="desc">Decomposes the bead into a task plan + acceptance criteria → <code>docs/plans/&lt;slug&gt;.md</code>.</div>
+        <div class="tags"><span class="tag t-sonnet">Sonnet</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- ARCHITECT -->
+  <div class="row">
+    <div class="lane">ARCHITECT<small>major lane</small></div>
+    <div class="cards">
+      <div class="card p-arch">
+        <div class="cmd">factory.architect</div>
+        <div class="desc">Major changes: design approach, author <b>ADR (Proposed)</b> + a self-contained review packet. Minor: pass through.</div>
+        <div class="tags"><span class="tag t-opus">Opus</span><span class="tag t-exp">owns ADRs</span></div>
+      </div>
+      <div class="card p-arch">
+        <div class="cmd">factory.architecture-reviewer</div>
+        <div class="desc">★ EXTERNAL GATE ★ — operator pastes the packet into ChatGPT, brings feedback back. ADR must move <b>Proposed → Accepted</b> before build.</div>
+        <div class="tags"><span class="tag t-sonnet">Sonnet</span><span class="tag t-R">reviewer</span><span class="tag t-human">HUMAN</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- DESIGN -->
+  <div class="row">
+    <div class="lane">DESIGN<small>gated</small></div>
+    <div class="cards">
+      <div class="card p-design">
+        <div class="cmd">factory.designer</div>
+        <div class="desc">If <b>needs_design=true</b>: polished UI/UX via the <b>inhabited-design</b> plugin (lite) → <code>docs/designs/&lt;slug&gt;/</code>. Else pass through (token-heavy, opt-in).</div>
+        <div class="tags"><span class="tag t-sonnet">Sonnet</span><span class="tag t-human">design approval</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- BUILD -->
+  <div class="row">
+    <div class="lane">BUILD</div>
+    <div class="cards">
+      <div class="card p-build">
+        <div class="cmd">factory.builder</div>
+        <div class="desc">Loads the relevant <b>*-expert</b> (api / web / ios / android / devops), implements on a feature branch, adds <code>// PROJ-ADR/PD</code> markers, pushes.</div>
+        <div class="tags"><span class="tag t-sonnet">Sonnet</span><span class="tag t-exp">+expert</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- REVIEW -->
+  <div class="row">
+    <div class="lane">REVIEW</div>
+    <div class="cards">
+      <div class="card p-review">
+        <div class="cmd">factory.code-reviewer</div>
+        <div class="desc">Reviews diff for correctness/quality, verifies every decision carries a marker, runs <code>decisions check</code>. Bounded ≤3 loops.</div>
+        <div class="tags"><span class="tag t-sonnet">Sonnet</span><span class="tag t-R">reviewer · markers</span></div>
+      </div>
+      <div class="card p-review">
+        <div class="cmd">⊕ investigate</div>
+        <div class="desc">Root-cause debugging when something breaks. <b>Iron Law:</b> no fix until the cause is proven (repro → bisect → toggle).</div>
+        <div class="tags"><span class="tag t-new">operator skill</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- VALIDATE / TEST -->
+  <div class="row">
+    <div class="lane">TEST<small>/ validate</small></div>
+    <div class="cards">
+      <div class="card p-test">
+        <div class="cmd">factory.validator</div>
+        <div class="desc">Runs the rig's tests + typecheck + build + <code>decisions.mjs check</code> + acceptance criteria. <b>Gate: no merge without green.</b></div>
+        <div class="tags"><span class="tag t-sonnet">Sonnet</span><span class="tag t-G">gate</span></div>
+      </div>
+      <div class="card p-test">
+        <div class="cmd">⊕ qa-exploratory</div>
+        <div class="desc">Drives the live app like a user to find what scripted e2e misses (empty/error states, sequencing, persistence). Report-only or fix.</div>
+        <div class="tags"><span class="tag t-new">operator skill</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- SHIP -->
+  <div class="row">
+    <div class="lane">SHIP</div>
+    <div class="cards">
+      <div class="card p-ship">
+        <div class="cmd">factory.release-gate</div>
+        <div class="desc">Opens a pull request and <b>stops</b>. The factory never self-merges — a human reviews &amp; merges to main (branch protection).</div>
+        <div class="tags"><span class="tag t-sonnet">Sonnet</span><span class="tag t-G">gate</span><span class="tag t-human">HUMAN merge</span></div>
+      </div>
+      <div class="card p-ship">
+        <div class="cmd">⊕ release-deploy-verify</div>
+        <div class="desc">After merge: wait CI → deploy (Vercel) → verify prod health → canary-watch + rollback. Confirms before merge &amp; deploy.</div>
+        <div class="tags"><span class="tag t-new">operator skill</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <!-- REFLECT -->
+  <div class="row">
+    <div class="lane">REFLECT</div>
+    <div class="cards">
+      <div class="card p-reflect ghost">
+        <div class="cmd">⊕ retro <span style="font-weight:500;font-size:11px;color:#999;">— planned</span></div>
+        <div class="desc">Weekly factory metrics over <code>gc</code> data: beads shipped, stage stalls, token spend, Dolt health. (Gap — not yet built.)</div>
+        <div class="tags"><span class="tag t-new">operator skill</span></div>
+      </div>
+      <div class="card p-reflect">
+        <div class="cmd">gc dashboard</div>
+        <div class="desc">Live rig status, bead board, agent sessions (<code>:8080</code> / supervisor <code>:8372</code>).</div>
+        <div class="tags"><span class="tag t-exp">built-in</span></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- KNOWLEDGE LAYER -->
+  <div class="row">
+    <div class="lane" style="align-items:flex-end;">KNOWLEDGE<small>the memory</small></div>
+    <div class="cards">
+      <div class="card p-layer"><div class="cmd" style="font-size:13px;">ADRs · PDs · code markers</div><div class="desc"><code>docs/decisions/</code> + <code>docs/product-decisions/</code>. Append-only, supersede-don't-edit, monotonic IDs. Code carries <code>// PROJ-ADR/PD-xxx</code>.</div></div>
+      <div class="card p-layer"><div class="cmd" style="font-size:13px;">decisions.mjs gate</div><div class="desc">Zero-dep verifier: no dangling/stale/orphan markers; every Accepted PD has a passing test. Run by code-reviewer + validator.</div></div>
+      <div class="card p-layer"><div class="cmd" style="font-size:13px;">experts/ + rules/</div><div class="desc">Shared <code>factory-skills</code>: 5 domain experts, engineering-principles, group-rules, production-guardrails.</div></div>
+    </div>
+  </div>
+
+  <!-- GUARDRAIL LAYER -->
+  <div class="row">
+    <div class="lane" style="align-items:flex-end;">GUARDRAILS<small>security</small></div>
+    <div class="cards">
+      <div class="card p-layer"><div class="cmd" style="font-size:13px;">ask-before-irreversible</div><div class="desc">No deploy/delete/push without operator go. No multi-agent fan-out without permission. Smallest model that fits.</div></div>
+      <div class="card p-layer"><div class="cmd" style="font-size:13px;">branch isolation + human merge</div><div class="desc">Builder works on a feature branch; branch protection forces the human PR gate. Scale-to-zero — "done means gone".</div></div>
+      <div class="card p-layer"><div class="cmd" style="font-size:13px;">production-guardrails + /security-review</div><div class="desc">Tier-aware standard (S1–S6, RLS, concurrency R4) + deferred-control ledger. Diff-level security review on demand.</div></div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><span class="tag t-opus">Opus</span><span class="tag t-sonnet">Sonnet</span><span class="tag t-haiku">Haiku</span> <b>model tier</b></span>
+    <span><span class="tag t-R">R</span> reviewer (owns a record)</span>
+    <span><span class="tag t-G">G</span> quality gate</span>
+    <span><span class="tag t-human">HUMAN</span> human-in-the-loop</span>
+    <span><span class="tag t-new">⊕</span> operator skill (you invoke)</span>
+    <span><span class="tag t-exp">+expert</span> loads domain expert</span>
+    <span>dashed = planned / optional lane</span>
+  </div>
+</body>
+</html>

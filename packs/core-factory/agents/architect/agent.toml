@@ -1,0 +1,13 @@
+# architect — major-lane design + ADR authoring.
+# Model tier: OPUS (deep reasoning). To pin Opus, define an Opus-backed provider
+# in city.toml and set `provider = "<that-provider>"` here. Left at workspace
+# default until that provider exists (keeps gc doctor green).
+scope = "rig"
+prompt_template = "agents/architect/prompt.template.md"
+wake_mode = "fresh"
+work_dir = ".gc/agents/{{.Rig}}/architect"
+nudge = "Run gc prime, read the routed step; for major changes author/update an ADR, then close the step."
+idle_timeout = "1h"
+min_active_sessions = 0
+max_active_sessions = 2
+default_sling_formula = "mol-core-delivery"

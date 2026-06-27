@@ -1,0 +1,13 @@
+# code-reviewer — reviews the diff for quality + decision markers; runs decisions check.
+# Runs on Codex (OpenAI). Requires the `codex` CLI installed + authenticated on the
+# host; the per-provider codex overlay supplies the session hooks.
+provider = "codex"
+scope = "rig"
+prompt_template = "agents/code-reviewer/prompt.template.md"
+wake_mode = "fresh"
+work_dir = ".gc/agents/{{.Rig}}/code-reviewer"
+nudge = "Run gc prime, read the routed step, review the branch diff, run decisions check, approve or return feedback."
+idle_timeout = "1h"
+min_active_sessions = 0
+max_active_sessions = 2
+default_sling_formula = "mol-core-delivery"
