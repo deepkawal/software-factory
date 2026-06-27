@@ -15,6 +15,36 @@ domain experts, engineering rules, and decision-record discipline in this repo.
 > CI gates, and live deploys). The project-specific examples below have been
 > genericized; the discipline they encode is the part that mattered.
 
+**New here?** Read [`START_HERE.md`](START_HERE.md) — a 10-minute orientation map.
+
+## Architecture
+
+One **city** (the factory) hosts many **rigs** (projects); this pack is imported per-rig
+as `factory`. A unit of work — a **bead** — flows one direction through ten role-specialized
+agents, and **two lanes** decide how much human oversight it gets:
+
+```
+work bead → intake-pm (triage) ─┬─ minor ──────────────────────────────► build → PR ─[human merge]
+                                │
+                                └─ major → architect (ADR) → external ──► [human accepts] → build → PR
+                                                              review                              [human merge]
+
+build = designer (gated) → builder (+expert) → code-reviewer → validator → release-gate
+```
+
+- **Minor lane** (bug / small change): runs autonomously to a PR — one human gate, the merge.
+- **Major lane** (new subsystem, schema, business rule): the architect writes an **ADR** + a
+  review packet; it goes through external review; a human flips the ADR `Proposed → Accepted`
+  before any code is built — two human gates.
+- Agents are **scale-to-zero**: they materialize when a bead is routed to them, do the work, and
+  exit. Idle is the correct resting state.
+- The **knowledge discipline** is the load-bearing part: code is the source of truth for derivable
+  facts; everything else is an append-only **ADR** (technical why) or **PD** (product why), linked to
+  code by `// PROJ-ADR/PD-NNN` markers and enforced by `tools/decisions.mjs check`.
+
+Full wiring, the agent roster, model-tier mapping, and infra mechanics are in
+[`docs/FACTORY_WIRING.md`](docs/FACTORY_WIRING.md) (diagram: `docs/factory-wiring-diagram.html`).
+
 ## Layout
 
 ```
