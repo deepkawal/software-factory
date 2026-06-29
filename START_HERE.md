@@ -73,8 +73,10 @@ no dangling/stale/orphan markers and PD↔test coverage.
 
 ### 9. How do the model tiers work?
 Set per agent via the `provider` field in `agent.toml`. Default mapping: **Opus** for the architect
-(deep reasoning), **Sonnet** for builder/planner/reviewers/validator/release-gate/designer, **Haiku**
-for intake-pm triage. Escalate to Opus only for deep reasoning — never silently upgrade.
+(deep reasoning), **OpenAI (Codex)** for the code-reviewer + architecture-reviewer (independent
+external review on a second model family), **Sonnet** for builder/planner/product-reviewer/validator/
+release-gate/designer, **Haiku** for intake-pm triage. Escalate to Opus only for deep reasoning —
+never silently upgrade.
 → `rules/group-rules.md` + `docs/FACTORY_WIRING.md` §Model tiers.
 
 ### 10. How do I contribute?

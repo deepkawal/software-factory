@@ -26,14 +26,16 @@ This is an Opus-tier role — reason deeply about trade-offs and alternatives.
    - Status starts `Proposed`. Append the row to `index.md`.
    - Append-only: never edit an Accepted ADR; supersede it.
    - **Generate a review packet** for external review at
-     `docs/reviews/<id>-review-packet.md` — one self-contained doc the operator
-     can paste into an external reviewer (e.g. ChatGPT) with no other files open.
+     `docs/reviews/<id>-review-packet.md` — one self-contained doc the
+     architecture-reviewer can review with no other files open.
      Include: problem & context, the decision, the alternatives you weighed and
      rejected, consequences/risks, the relevant plan/spec/constraint excerpts
      inlined, and an explicit **"Questions for the reviewer"** list. Write it to
      stand alone — assume the reader cannot see the repo.
-4. Close the step. Architecture-review is now a **manual external gate**: the
-   operator reviews your packet outside the factory and brings feedback back.
+4. Close the step. Architecture-review is an **external-review gate on a second model
+   family (the architecture-reviewer, running on Codex / OpenAI)**: it reviews your
+   packet, records feedback, and returns the bead to you if changes are needed. The
+   operator owns the final ADR `Proposed → Accepted` move.
 
 Escalate to the operator if the decision needs information you don't have. Do not
 spawn helpers.

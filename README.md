@@ -158,15 +158,18 @@ records, **orphan** Accepted records (no marker), and **PD↔test** coverage (Ac
 with a missing/planned test). `--strict` fails on warnings too; `--root DIR` targets
 another project. Wire `check` into CI / the Validator stage as a gate.
 
-## Recommended model-tier mapping (per group-rules.md)
+## Recommended model mapping (per group-rules.md)
 
-| Agent / role                         | Tier      |
-|--------------------------------------|-----------|
-| Architect, Architect Reviewer        | Opus 4.8  |
-| Builder, Planner, Code/Product Review | Sonnet   |
-| Intake/PM triage, Mayor status        | Haiku    |
+| Agent / role                                                       | Model / provider |
+|-------------------------------------------------------------------|------------------|
+| Architect                                                         | Opus 4.8         |
+| Builder, Planner, Product Review, Validator, Release-gate, Designer | Sonnet         |
+| Code Review, Architecture Review                                   | OpenAI (Codex)   |
+| Intake/PM triage, Mayor status                                    | Haiku            |
 
-Escalate to Opus only for deep reasoning; never silently upgrade.
+Code and architecture review run on a second model family (OpenAI via the Codex CLI) for an
+independent perspective on the work. Escalate to Opus only for deep reasoning; never silently
+upgrade.
 
 ## Portability
 

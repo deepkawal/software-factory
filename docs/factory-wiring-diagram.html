@@ -34,6 +34,7 @@
   .t-opus  { background:#efe2ff; color:#7b3fd0; }
   .t-sonnet{ background:#e2eeff; color:#3f6fd0; }
   .t-haiku { background:#e6f6ea; color:#3a9a55; }
+  .t-openai{ background:#d6f1ec; color:#0a8a6e; }
   .t-R     { background:#fff0d6; color:#c07a18; }
   .t-G     { background:#ffe2e2; color:#c0392b; }
   .t-human { background:#1a1a2e; color:#fff; }
@@ -115,8 +116,8 @@
       </div>
       <div class="card p-arch">
         <div class="cmd">factory.architecture-reviewer</div>
-        <div class="desc">★ EXTERNAL GATE ★ — operator pastes the packet into ChatGPT, brings feedback back. ADR must move <b>Proposed → Accepted</b> before build.</div>
-        <div class="tags"><span class="tag t-sonnet">Sonnet</span><span class="tag t-R">reviewer</span><span class="tag t-human">HUMAN</span></div>
+        <div class="desc">★ EXTERNAL GATE ★ — <b>automated on Codex (OpenAI)</b>: reviews the architect's packet itself, records feedback. Operator still moves the ADR <b>Proposed → Accepted</b> before build.</div>
+        <div class="tags"><span class="tag t-openai">OpenAI · Codex</span><span class="tag t-R">reviewer</span><span class="tag t-human">HUMAN accept</span></div>
       </div>
     </div>
   </div>
@@ -155,7 +156,7 @@
       <div class="card p-review">
         <div class="cmd">factory.code-reviewer</div>
         <div class="desc">Reviews diff for correctness/quality, verifies every decision carries a marker, runs <code>decisions check</code>. Bounded ≤3 loops.</div>
-        <div class="tags"><span class="tag t-sonnet">Sonnet</span><span class="tag t-R">reviewer · markers</span></div>
+        <div class="tags"><span class="tag t-openai">OpenAI · Codex</span><span class="tag t-R">reviewer · markers</span></div>
       </div>
       <div class="card p-review">
         <div class="cmd">⊕ investigate</div>
@@ -242,7 +243,7 @@
   </div>
 
   <div class="legend">
-    <span><span class="tag t-opus">Opus</span><span class="tag t-sonnet">Sonnet</span><span class="tag t-haiku">Haiku</span> <b>model tier</b></span>
+    <span><span class="tag t-opus">Opus</span><span class="tag t-sonnet">Sonnet</span><span class="tag t-haiku">Haiku</span><span class="tag t-openai">OpenAI · Codex</span> <b>model / provider</b></span>
     <span><span class="tag t-R">R</span> reviewer (owns a record)</span>
     <span><span class="tag t-G">G</span> quality gate</span>
     <span><span class="tag t-human">HUMAN</span> human-in-the-loop</span>
