@@ -15,7 +15,45 @@ domain experts, engineering rules, and decision-record discipline in this repo.
 > CI gates, and live deploys). The project-specific examples below have been
 > genericized; the discipline they encode is the part that mattered.
 
-**New here?** Read [`START_HERE.md`](START_HERE.md) — a 10-minute orientation map.
+## Why this matters for engineering leaders
+
+AI can write code fast; the hard part is keeping it *honest* at scale. This factory
+is an opinionated answer to that — it exists to:
+
+- **Reduce ambiguity** — every non-trivial change is anchored to an explicit product
+  decision (PD, the *why for users*) and architecture decision (ADR, the *why
+  technically*), so intent is written down **before** code, not reconstructed after.
+- **Improve review quality** — work flows through role-specialized review stages
+  (product, architecture, code) with human gates on the decisions that matter, instead
+  of one overloaded reviewer rubber-stamping a large diff.
+- **Make AI-assisted engineering safer** — decisions are linked to code by markers and
+  enforced by an automated gate (`tools/decisions.mjs`), and tiered production
+  guardrails (security, data, reliability, AI safety) travel with every project.
+
+> **Scope note:** this repo intentionally contains reusable *factory assets* — agents,
+> rules, experts, templates, and tooling — **not** proprietary application code. It's the
+> system that builds software, genericized to be shared.
+
+## What to look at first
+
+1. [`START_HERE.md`](START_HERE.md) — a 10-minute orientation map of the whole factory.
+2. [`docs/FACTORY_WIRING.md`](docs/FACTORY_WIRING.md) — the full agent roster, wiring, and model-tier mapping.
+3. [`tools/decisions.mjs`](tools/decisions.mjs) — the zero-dependency gate that keeps decisions and code in sync.
+
+**Example flow — how one change stays accountable:**
+
+```
+product decision (PD)  →  architecture decision (ADR)  →  code marker      →  validator gate
+  why, for users           why, technically                // PROJ-ADR-014      decisions.mjs check
+  (PD_TEMPLATE.md)          (ADR_TEMPLATE.md)               in the source        fails CI if dangling
+```
+
+A new business rule starts as a **PD** (the product *why*). If it needs a technical
+decision, the architect writes an **ADR** that a human accepts before any code is built.
+The implementing code carries a `// PROJ-ADR-NNN` / `// PROJ-PD-NNN` **marker**, and the
+**validator** runs `decisions.mjs check` as a CI gate — a marker pointing at a missing or
+superseded decision (or an accepted decision with no code/test) fails the build. Intent
+and code can't silently drift apart.
 
 ## Architecture
 
