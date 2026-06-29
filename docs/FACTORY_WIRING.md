@@ -52,7 +52,7 @@ this pack is imported per-rig as `factory`. Formula: `mol-core-delivery` (graph.
 | **product-reviewer** `[R]` | product intent | **Product Decisions** (`docs/product-decisions/`) |
 | **planner** | decomposition | `docs/plans/<slug>.md` + acceptance criteria |
 | **architect** `[O]` | architecture (major) | **ADRs** (`docs/decisions/`) Proposed + **review packet** (`docs/reviews/<id>-review-packet.md`) |
-| **architecture-reviewer** `[R]` | external-review gate | hands packet to operator for external review (e.g. ChatGPT); records feedback in `docs/reviews/`; parks for ADR Accept |
+| **architecture-reviewer** `[R]` | external-review gate (OpenAI / Codex) | reviews the packet itself on Codex; records feedback in `docs/reviews/`; parks for operator ADR Accept |
 | **designer** | UI/UX (gated) | `docs/designs/<slug>/index.html` via inhabited-design plugin |
 | **builder** `+expert` | implementation | feature branch + code + `// <PREFIX>-ADR/PD` markers |
 | **code-reviewer** `[R]` | code quality | verdict; verifies markers + runs `decisions check` |
@@ -63,11 +63,11 @@ this pack is imported per-rig as `factory`. Formula: `mol-core-delivery` (graph.
 
 - **Minor** (bug fix / small change): runs autonomously to a PR. **One** human gate — the merge.
 - **Major** (new subsystem / arch / schema / business rule): architect writes an ADR + a
-  self-contained review packet → architecture-reviewer hands the packet to the operator for
-  **external review (e.g. ChatGPT)** and records the feedback → **human approves**
-  (ADR `Proposed → Accepted`) before build. **Two** human gates — design approval + merge.
-  (No OpenAI/Codex access today, so this gate is manual; set `provider="codex"` on the
-  reviewer to re-automate it later.)
+  self-contained review packet → architecture-reviewer **reviews it on Codex (OpenAI)** and
+  records the feedback → **human approves** (ADR `Proposed → Accepted`) before build.
+  **Two** human gates — design approval + merge. (Requires the `codex` CLI installed +
+  authenticated; the per-provider codex overlay supplies the session hooks. `provider="codex"`
+  is already the default for both reviewers.)
 
 Lane is chosen by `metadata.change_class` (set by intake-pm). UI work additionally gets the
 **designer** stage via `metadata.needs_design=true` (else it passes through, no token cost).
@@ -93,16 +93,20 @@ Lane is chosen by `metadata.change_class` (set by intake-pm). UI work additional
 
 ## Model tiers (per `group-rules.md`; set via agent `provider`)
 
-| Tier | Agents | Why |
+| Tier / provider | Agents | Why |
 |------|--------|-----|
 | **Opus** | architect | deep architectural reasoning |
-| **Sonnet** | builder, planner, code/product-reviewer, validator, release-gate, designer, architecture-reviewer | routine engineering (the architecture-reviewer now only assembles the handoff + records feedback; deep review is external) |
+| **Sonnet** | builder, planner, product-reviewer, validator, release-gate, designer | routine engineering |
+| **OpenAI (Codex)** | code-reviewer, architecture-reviewer | independent external review — a second model family checks the work |
 | **Haiku** | intake-pm | light triage |
 
-> **Architecture review is a manual external gate.** With no OpenAI/Codex access, the deep
-> architecture review runs outside the factory: the operator pastes the architect's review
-> packet into ChatGPT and brings the feedback back. To re-automate it with an OpenAI model,
-> install + authenticate the Codex CLI and set `provider="codex"` on the architecture-reviewer.
+> **Code review and architecture review run on a second model family (OpenAI Codex).**
+> Reviewing with a different provider than the one that produced the work gives an independent
+> perspective — it catches issues the author's own model is prone to miss. The
+> architecture-reviewer reviews the architect's packet itself and records feedback, but never
+> self-accepts: the operator still owns the ADR `Proposed → Accepted` move. Requires the
+> `codex` CLI installed + authenticated; `provider="codex"` is already the default for both
+> reviewers (the per-provider codex overlay supplies the session hooks).
 
 No multi-agent fan-out without explicit permission; prefer the smallest model that fits.
 

@@ -27,8 +27,12 @@ user's `users/<name>/preferences.md`.
   deep reasoning: architecting solutions, authoring or reviewing ADRs, complex or
   novel design, hard multi-system debugging, and ambiguous trade-off analysis. It
   is the expensive tier — do not use it for routine work.
-- **Sonnet — routine engineering.** Implementation, code review, planning,
-  validation, and most day-to-day work run on the Sonnet tier.
+- **Sonnet — routine engineering.** Implementation, planning, validation, and most
+  day-to-day work run on the Sonnet tier.
+- **A second model family for review.** Code review and architecture review run on a
+  *different provider* than the one that produced the work — in this factory, OpenAI
+  via the Codex CLI (`provider="codex"`). Reviewing with an independent model family
+  catches issues the author's own model is prone to miss.
 - **Haiku — light / mechanical.** Triage, status answers, simple edits, and
   formatting run on the Haiku tier.
 
