@@ -136,3 +136,7 @@ The expert *content* is model-agnostic (plain senior-engineer guidance). The
 on-demand `SKILL.md` + frontmatter loading is a Claude Code convention; other
 CLIs (Codex `AGENTS.md`, Gemini `GEMINI.md`, OpenCode) include the same content
 via their own mechanism but without automatic per-task selection.
+
+## License
+
+MIT — see [`LICENSE`](LICENSE). Free to use, modify, and distribute with attribution.

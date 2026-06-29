@@ -44,6 +44,5 @@ If prose contradicts code, the code wins and the prose is the bug — fix the pr
 
 ## 5. License
 
-This project is licensed under **GPL-3.0** (see [`LICENSE`](LICENSE)). By contributing, you agree
-that your contributions are licensed under the same terms. Distributed derivatives must remain
-open under GPL-3.0.
+This project is licensed under the **MIT License** (see [`LICENSE`](LICENSE)). By contributing, you
+agree that your contributions are licensed under the same terms.
