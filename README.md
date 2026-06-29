@@ -137,6 +137,15 @@ on-demand `SKILL.md` + frontmatter loading is a Claude Code convention; other
 CLIs (Codex `AGENTS.md`, Gemini `GEMINI.md`, OpenCode) include the same content
 via their own mechanism but without automatic per-task selection.
 
+## Acknowledgments
+
+The software-factory pattern this repo implements — the multi-agent pipeline,
+the agent roles, and the molecule/formula/bead orchestration model — comes from
+the [Software Factory Intensive](https://aitinkerers.org/) (an AI Tinkerers
+event, hosted by [Actual AI](https://www.actual.ai/)). The agent prompts,
+operating rules, expert guidance, and documentation in this repository are my
+own work built on top of that framework.
+
 ## License
 
 MIT — see [`LICENSE`](LICENSE). Free to use, modify, and distribute with attribution.
