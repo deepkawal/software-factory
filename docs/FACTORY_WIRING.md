@@ -4,7 +4,7 @@ The `core-factory` Gas City pack: a **hybrid** software factory (autonomous for 
 work, human-in-the-loop for major changes). One **city** hosts many **rigs** (projects);
 this pack is imported per-rig as `factory`. Formula: `mol-core-delivery` (graph.v2).
 
-![AI Software Factory — Gas City autonomous pipeline](factory-wiring-diagram.png)
+![Agentic AI Autonomous Software Factory](factory-wiring-diagram.png)
 
 > The full-resolution, interactive source is [`factory-wiring-diagram.html`](factory-wiring-diagram.html).
 > The ASCII view below is the quick reference.
