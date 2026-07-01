@@ -58,7 +58,7 @@ and code can't silently drift apart.
 ## Architecture
 
 <p align="center">
-  <img src="docs/factory-wiring-diagram.png" alt="AI Software Factory — Gas City autonomous pipeline: ten scale-to-zero agents driving a bead from intake to a human-merge PR" width="720">
+  <img src="docs/factory-wiring-diagram.png" alt="Agentic AI Autonomous Software Factory: ten scale-to-zero agents driving a bead from intake to a human-merge PR" width="720">
 </p>
 
 One **city** (the factory) hosts many **rigs** (projects); this pack is imported per-rig
