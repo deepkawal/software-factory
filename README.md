@@ -141,7 +141,7 @@ The Software Factory currently explores:
 
 > **Technical deep-dive:** for the concrete implementation — the multi-agent pipeline,
 > agent roster, decision-record discipline, the `decisions.mjs` CI gate, and model-tier
-> mapping — see [`ARCHITECTURE.md`](ARCHITECTURE.md).
+> mapping — see [`docs/README-technical.md`](docs/README-technical.md).
 
 ---
 
