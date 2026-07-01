@@ -6,17 +6,9 @@
 
 ## Executive Summary
 
-Software engineering is entering a fundamental transition.
+For decades, engineering organizations have invested in developer platforms, CI/CD, automation, observability, and internal tooling to make engineers more productive. AI-native development is the next step in that same line of work: specialized AI agents participating across the software lifecycle while engineers stay accountable for the technical and business decisions.
 
-For decades, engineering organizations have invested in developer platforms, CI/CD, automation, observability, and internal tooling to improve developer productivity. The next evolution is not another tool—it is AI-native software development, where specialized AI agents participate throughout the software development lifecycle while engineers remain accountable for technical and business decisions.
-
-AI Software Factory is my exploration of that future.
-
-Rather than focusing on AI-assisted coding, this project explores how an engineering organization can operate when Product Managers, Architects, Engineers, Reviewers, QA Engineers, Technical Writers, and Operations teams each have specialized AI collaborators working alongside them.
-
-The objective is simple:
-
-> Build better software by reducing engineering friction, improving consistency, and allowing engineers to spend more time solving business problems.
+AI Software Factory is my exploration of what that looks like in practice. Instead of treating AI as a coding assistant, it models a full engineering organization — Product, Architecture, Engineering, Review, QA, Documentation, and Operations — where each function has a specialized AI collaborator. The aim is ordinary: less friction, more consistency, and more engineering time spent on business problems instead of mechanics.
 
 ---
 
@@ -42,37 +34,23 @@ AI Software Factory is my attempt to answer that question.
 
 ## Engineering Philosophy
 
-This project is guided by several principles.
+A few principles shape the design.
 
 ### AI augments engineers
 
-AI should increase engineering capability—not replace engineering ownership.
-
-Humans remain accountable for architecture, product decisions, security, and production quality.
+Engineers keep ownership of architecture, product decisions, security, and production quality. The agents take on more of the mechanical work around those decisions, but the accountability doesn't move.
 
 ### Platforms compound
 
-Developer productivity compounds over time.
-
-Every hour removed from thousands of engineers creates enormous organizational leverage.
-
-AI should be viewed as another platform capability—not another isolated tool.
+Developer productivity compounds: an hour saved for every engineer, every week, adds up fast across an organization. So I build AI as a platform capability — maintained centrally, wired into the workflow — rather than a collection of point tools bolted on team by team.
 
 ### Deterministic workflows matter
 
-Engineering organizations require predictability.
-
-The goal is not autonomous software development.
-
-The goal is repeatable, governed engineering workflows augmented by AI.
+Engineering organizations run on predictability. The goal here isn't autonomous software delivery; it's repeatable, governed workflows that use AI at each step and produce the same shape of output every time.
 
 ### Context is the product
 
-Large language models are increasingly commoditized.
-
-High-quality engineering context is becoming the competitive advantage.
-
-Documentation, architecture, standards, ADRs, coding conventions, and organizational knowledge become first-class assets.
+As models converge in capability, the differentiator moves to the context you feed them. Documentation, architecture, standards, ADRs, coding conventions, and accumulated organizational knowledge are the real assets — the factory is only as good as the context behind it.
 
 ---
 
@@ -116,11 +94,7 @@ Documentation    ──▶  Documentation Agent
 Deployment       ──▶  Release Agent
 ```
 
-Every stage still has a human owner.
-
-AI accelerates execution.
-
-Humans remain responsible for decisions.
+Every stage still has a human owner. The agent accelerates the work; the person owns the decision.
 
 ---
 
@@ -189,11 +163,7 @@ Near-term areas of exploration include:
 
 I am an Engineering Director with sixteen years of experience building internal engineering platforms, developer productivity systems, CI/CD platforms, and AI-enabled engineering workflows across Microsoft, Expeditors, Niantic, and Epic Games.
 
-Throughout my career, my focus has remained consistent:
-
-> Build platforms that make engineers more effective.
-
-AI Software Factory represents the next chapter in that journey.
+The focus has stayed the same throughout: build platforms that make engineers more effective. This is where that work goes next.
 
 ---
 
