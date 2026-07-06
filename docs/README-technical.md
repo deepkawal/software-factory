@@ -10,6 +10,23 @@ The pipeline (`packs/core-factory/`) is a [Gas City](https://github.com/) pack o
 product / architecture / code reviewers → validator → release-gate — wired to the
 domain experts, engineering rules, and decision-record discipline in this repo.
 
+## Regulated overlays
+
+`packs/regulated-factory/` extends the same lifecycle with earlier questions for
+privacy, security, AI data boundaries, vendor risk, and release evidence. Domain
+packs then specialize that overlay:
+
+- `packs/healthcare-clinic-factory/` adds PHI/ePHI, minimum necessary,
+  HIPAA-aware engineering, clinical workflow safety, FHIR/interoperability, and
+  healthcare release evidence.
+- `packs/fintech-app-platform-factory/` adds PII/SSN handling, app-platform
+  library contracts, GraphQL edge review, mobile SDK security, payments,
+  KYC/AML/sanctions, remittance disclosure, QA, and release management.
+
+The overlay does not change the core-factory route. It adds classification,
+review artifacts, guardrails, examples, and lightweight checks that make human
+approval requirements visible before merge or deploy.
+
 > Battle-tested, not theoretical: this factory drove a real production web app
 > through dozens of shipped increments (architecture decisions, product decisions,
 > CI gates, and live deploys). The project-specific examples below have been
