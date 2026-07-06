@@ -1,0 +1,44 @@
+name: Regulated checks
+
+# Runs the lightweight regulated-domain checks on every pull request (and on
+# pushes to main) so required review artifacts and likely sensitive-data or
+# AI-boundary gaps are visible before merge. These checks do not replace human
+# review by Legal, Compliance, Privacy, Security, Clinical, Risk, AML, or
+# Regulatory teams - they only surface questions earlier.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  regulated-checks:
+    name: regulated-checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # --- Deterministic presence gates -------------------------------------
+      # Fail only when a regulated example scenario is missing a required
+      # artifact. Safe to keep blocking.
+      - name: Required domain artifacts
+        run: node tools/regulated/check-required-domain-artifacts.mjs
+
+      - name: Release evidence
+        run: node tools/regulated/check-release-evidence.mjs
+
+      # --- Heuristic routing checks -----------------------------------------
+      # Surface likely sensitive-data logging and AI data-boundary gaps. They
+      # exit non-zero only when a real gap is found. To make either advisory
+      # instead of blocking, add `continue-on-error: true` to that step.
+      - name: Sensitive-data logging
+        run: node tools/regulated/check-sensitive-data-logs.mjs
+
+      - name: AI data boundary
+        run: node tools/regulated/check-ai-data-boundary.mjs
