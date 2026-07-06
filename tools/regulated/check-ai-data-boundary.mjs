@@ -23,8 +23,11 @@ const aiPatterns = [
 const boundaryArtifactPatterns = [
   /AI_DATA_BOUNDARY_REVIEW/i,
   /AI_CLINICAL_SUMMARY_REVIEW/i,
+  /AI_DEPLOYMENT_CLASSIFICATION/i,
   /ai-data-boundary-review/i,
   /ai-clinical-summary-review/i,
+  /ai-deployment-classification/i,
+  /ai-data-boundary/i,
 ];
 
 function walk(dir, files = []) {
