@@ -59,6 +59,27 @@ node tools/decisions.mjs check    # gate: 0 errors = pass
 ```
 → full per-rig install in `docs/FACTORY_WIRING.md` §Install.
 
+### 6a. For regulated-domain examples
+Use this path when the project is healthcare, fintech, money movement, or another regulated domain:
+
+1. Read `packs/core-factory/` to understand the domain-neutral lifecycle.
+2. Read `packs/regulated-factory/` for the shared privacy, security, AI governance,
+   vendor-risk, and release-evidence overlay.
+3. Review `packs/healthcare-clinic-factory/examples/clinic-patient-summary-ai-assist/`
+   for a clinic AI-summary route through PHI/ePHI, minimum necessary, AI boundary,
+   clinical safety, and release evidence.
+4. Review `packs/fintech-app-platform-factory/examples/pii-safe-logging-library/`
+   and `packs/fintech-app-platform-factory/examples/graphql-edge-gateway-change/`
+   for app-platform routes through PII/SSN, library contracts, GraphQL edge, QA,
+   release risk, and evidence.
+5. Run the lightweight regulated checks:
+```bash
+node tools/regulated/check-sensitive-data-logs.mjs
+node tools/regulated/check-ai-data-boundary.mjs
+node tools/regulated/check-required-domain-artifacts.mjs
+node tools/regulated/check-release-evidence.mjs
+```
+
 ### 7. Where are the agents defined?
 `packs/core-factory/agents/<name>/` — each has an `agent.toml` (pool/provider/dispatch) and a
 `prompt.template.md` (the role's instructions). The 10 roles and what each owns are in

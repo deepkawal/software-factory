@@ -117,6 +117,43 @@ The Software Factory currently explores:
 > agent roster, decision-record discipline, the `decisions.mjs` CI gate, and model-tier
 > mapping — see [`docs/README-technical.md`](docs/README-technical.md).
 
+## Regulated Domain Packs
+
+The core AI Software Factory is intentionally domain-neutral. It defines the
+repeatable SDLC structure: intake, product reasoning, architecture,
+implementation, review, validation, release, and operational feedback.
+
+Regulated organizations need an additional layer. In healthcare, speed cannot
+bypass PHI/ePHI safeguards, minimum necessary data use, clinical workflow safety,
+vendor boundaries, and audit evidence. In fintech and money movement, speed
+cannot bypass PII/SSN protections, customer financial information safeguards,
+KYC/AML/sanctions controls, payment integrity, consumer disclosure behavior,
+platform-library contracts, and release traceability.
+
+This repository includes regulated-domain packs that extend the core factory
+with domain-specific agents, rules, templates, examples, and lightweight
+CI-style checks. These packs help engineering teams identify privacy, security,
+compliance, clinical workflow, AI governance, and release-evidence questions
+earlier in the SDLC. They do not replace required review by Legal, Compliance,
+Privacy, Security, Clinical, Risk, AML, or Regulatory teams.
+
+- [`packs/regulated-factory`](packs/regulated-factory/) — shared privacy,
+  security, AI-governance, vendor-risk, and release-evidence overlay.
+- [`packs/healthcare-clinic-factory`](packs/healthcare-clinic-factory/) —
+  healthcare/clinic software pack for PHI/ePHI, minimum necessary use, clinical
+  workflow safety, FHIR/interoperability, vendor/BAA prompts, and release evidence.
+- [`packs/healthcare-clinic-factory/examples/clinic-patient-summary-ai-assist`](packs/healthcare-clinic-factory/examples/clinic-patient-summary-ai-assist/) —
+  example route for an AI-assisted clinic patient summary.
+- [`packs/fintech-app-platform-factory`](packs/fintech-app-platform-factory/) —
+  Remitly-like App Platform pack for shared SDKs, GraphQL edge, release
+  management, QA, PII/SSN controls, KYC/AML/sanctions routing, payment integrity,
+  and remittance disclosure impact.
+- [`packs/fintech-app-platform-factory/examples/pii-safe-logging-library`](packs/fintech-app-platform-factory/examples/pii-safe-logging-library/) and
+  [`packs/fintech-app-platform-factory/examples/graphql-edge-gateway-change`](packs/fintech-app-platform-factory/examples/graphql-edge-gateway-change/) —
+  concrete fintech app-platform examples.
+- [`tools/regulated`](tools/regulated/) — lightweight Node checks for sensitive
+  data logging, AI data boundaries, required artifacts, and release evidence.
+
 ---
 
 ## Lessons Learned
