@@ -52,8 +52,10 @@ function nearbyBoundaryArtifact(file) {
 const findings = [];
 for (const file of walk(root)) {
   const rel = path.relative(root, file).replaceAll(path.sep, '/');
-  if (rel.startsWith('docs/') || rel.startsWith('rules/') || rel.startsWith('experts/') || rel === 'START_HERE.md' || path.basename(file).toLowerCase() === 'readme.md') continue;
-  if (rel.startsWith('packs/')) continue;
+  const isReadme = path.basename(file).toLowerCase() === 'readme.md';
+  if (rel.startsWith('docs/') || rel.startsWith('rules/') || rel.startsWith('experts/') || rel === 'START_HERE.md') continue;
+  if (isReadme && !rel.includes('/examples/')) continue;
+  if (rel.includes('/rules/') || rel.includes('/agents/')) continue;
   const text = fs.readFileSync(file, 'utf8').toLowerCase();
   const hasSensitive = sensitiveTerms.some((term) => text.includes(term));
   const hasAi = aiPatterns.some((pattern) => pattern.test(text));

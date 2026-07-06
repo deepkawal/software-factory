@@ -23,6 +23,7 @@ Pass a path to scan a consuming project:
 
 ```bash
 node tools/regulated/check-sensitive-data-logs.mjs ../my-app
+node tools/regulated/check-ai-data-boundary.mjs ../my-app
 ```
 
 ## What They Check
@@ -39,3 +40,8 @@ node tools/regulated/check-sensitive-data-logs.mjs ../my-app
 
 Treat warnings as routing signals. A finding usually means "attach the right
 artifact or document why this path is not in scope."
+
+`check-sensitive-data-logs.mjs` treats this repository's pack files as
+policy/template/example content so the factory can describe prohibited data
+patterns without failing its own check. Use the `../my-app` form above when
+gating real application source.
