@@ -10,6 +10,8 @@ For decades, engineering organizations have invested in developer platforms, CI/
 
 AI Software Factory is my exploration of what that looks like in practice. Instead of treating AI as a coding assistant, it models a full engineering organization — Product, Architecture, Engineering, Review, QA, Documentation, and Operations — where each function has a specialized AI collaborator. The aim is ordinary: less friction, more consistency, and more engineering time spent on business problems instead of mechanics.
 
+The work is grounded in MealBrain and other production-quality applications and prototypes: AI-native engineering, human-governed delivery, ADR/PD discipline, and a 10-agent Gas City pipeline applied to shipped product work.
+
 ---
 
 ## Why I Built This
