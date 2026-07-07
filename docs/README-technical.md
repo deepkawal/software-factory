@@ -27,10 +27,12 @@ The overlay does not change the core-factory route. It adds classification,
 review artifacts, guardrails, examples, and lightweight checks that make human
 approval requirements visible before merge or deploy.
 
-> Battle-tested, not theoretical: this factory drove a real production web app
-> through dozens of shipped increments (architecture decisions, product decisions,
-> CI gates, and live deploys). The project-specific examples below have been
-> genericized; the discipline they encode is the part that mattered.
+> Grounded in shipped product work: this factory has been used on MealBrain,
+> a deployed application with roughly 120 shipped PRs, real users starting with
+> a home-first rollout, and Google Calendar integration. The project-specific
+> examples below have been genericized; the AI-native engineering,
+> human-governed delivery, ADR/PD discipline, and 10-agent Gas City pipeline are
+> the parts that matter.
 
 ## Why this matters for engineering leaders
 
