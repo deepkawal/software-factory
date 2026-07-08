@@ -125,12 +125,18 @@ The core AI Software Factory is intentionally domain-neutral. It defines the
 repeatable SDLC structure: intake, product reasoning, architecture,
 implementation, review, validation, release, and operational feedback.
 
-Regulated organizations need an additional layer. In healthcare, speed cannot
-bypass PHI/ePHI safeguards, minimum necessary data use, clinical workflow safety,
-vendor boundaries, and audit evidence. In fintech and money movement, speed
-cannot bypass PII/SSN protections, customer financial information safeguards,
-KYC/AML/sanctions controls, payment integrity, consumer disclosure behavior,
-platform-library contracts, and release traceability.
+Regulated organizations need additional layers. Design-time governance catches
+privacy, security, AI-governance, vendor, domain-risk, and release-evidence
+questions before implementation and deployment. Runtime AI control-plane
+governance makes sure model routing, prompt and tool policy, MCP access,
+sensitive-data filtering, token and cost limits, observability, and audit logs
+are enforced while AI systems execute.
+
+In healthcare, speed cannot bypass PHI/ePHI safeguards, minimum necessary data
+use, clinical workflow safety, vendor boundaries, and audit evidence. In fintech
+and money movement, speed cannot bypass PII/SSN protections, customer financial
+information safeguards, KYC/AML/sanctions controls, payment integrity, consumer
+disclosure behavior, platform-library contracts, and release traceability.
 
 This repository includes regulated-domain packs that extend the core factory
 with domain-specific agents, rules, templates, examples, and lightweight
@@ -141,6 +147,11 @@ Privacy, Security, Clinical, Risk, AML, or Regulatory teams.
 
 - [`packs/regulated-factory`](packs/regulated-factory/) — shared privacy,
   security, AI-governance, vendor-risk, and release-evidence overlay.
+- [`packs/ai-control-plane-factory`](packs/ai-control-plane-factory/) —
+  vendor-neutral runtime AI governance pack for governed AI endpoints, model
+  routing, prompt/tool policy, MCP access control, sensitive-data filtering,
+  runtime audit logs, AI system registry, AI Bill of Materials, and token/cost
+  budget controls.
 - [`packs/healthcare-clinic-factory`](packs/healthcare-clinic-factory/) —
   healthcare/clinic software pack for PHI/ePHI, minimum necessary use, clinical
   workflow safety, FHIR/interoperability, vendor/BAA prompts, and release evidence.
@@ -155,6 +166,16 @@ Privacy, Security, Clinical, Risk, AML, or Regulatory teams.
   concrete fintech app-platform examples.
 - [`tools/regulated`](tools/regulated/) — lightweight Node checks for sensitive
   data logging, AI data boundaries, required artifacts, and release evidence.
+- [`tools/ai-control-plane`](tools/ai-control-plane/) — lightweight Node checks
+  for AI system registry, model routing policy, MCP/tool access review, and AI
+  runtime audit-log specifications.
+
+Together, the repository now covers:
+
+1. Core AI-native SDLC.
+2. Regulated design-time governance.
+3. Runtime AI control plane governance.
+4. Healthcare and fintech domain overlays.
 
 ---
 
