@@ -3,7 +3,7 @@
 > Exploring what software engineering looks like when AI becomes a first-class collaborator.
 
 > Enterprise-oriented reference architecture and executable starter kit for
-> governed AI-native software delivery in regulated FinTech environments.
+> governed AI-native software delivery in regulated environments.
 
 ---
 
