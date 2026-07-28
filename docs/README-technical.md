@@ -55,9 +55,9 @@ is an opinionated answer to that — it exists to:
 
 ## What to look at first
 
-1. [`START_HERE.md`](START_HERE.md) — a 10-minute orientation map of the whole factory.
-2. [`docs/FACTORY_WIRING.md`](docs/FACTORY_WIRING.md) — the full agent roster, wiring, and model-tier mapping.
-3. [`tools/decisions.mjs`](tools/decisions.mjs) — the zero-dependency gate that keeps decisions and code in sync.
+1. [`START_HERE.md`](../START_HERE.md) — a 10-minute orientation map of the whole factory.
+2. [`docs/FACTORY_WIRING.md`](FACTORY_WIRING.md) — the full agent roster, wiring, and model-tier mapping.
+3. [`tools/decisions.mjs`](../tools/decisions.mjs) — the zero-dependency gate that keeps decisions and code in sync.
 
 **Example flow — how one change stays accountable:**
 
@@ -77,7 +77,7 @@ and code can't silently drift apart.
 ## Architecture
 
 <p align="center">
-  <img src="docs/factory-wiring-diagram.png" alt="Agentic AI Autonomous Software Factory: ten scale-to-zero agents driving a bead from intake to a human-merge PR" width="720">
+  <img src="factory-wiring-diagram.png" alt="Agentic AI Autonomous Software Factory: ten scale-to-zero agents driving a bead from intake to a human-merge PR" width="720">
 </p>
 
 One **city** (the factory) hosts many **rigs** (projects); this pack is imported per-rig
@@ -104,7 +104,7 @@ build = designer (gated) → builder (+expert) → code-reviewer → validator �
   code by `// PROJ-ADR/PD-NNN` markers and enforced by `tools/decisions.mjs check`.
 
 Full wiring, the agent roster, model-tier mapping, and infra mechanics are in
-[`docs/FACTORY_WIRING.md`](docs/FACTORY_WIRING.md) (diagram: `docs/factory-wiring-diagram.html`).
+[`docs/FACTORY_WIRING.md`](FACTORY_WIRING.md) (diagram: `docs/factory-wiring-diagram.html`).
 
 ## Layout
 
@@ -208,4 +208,4 @@ own work built on top of that framework.
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE). Free to use, modify, and distribute with attribution.
+MIT — see [`LICENSE`](../LICENSE). Free to use, modify, and distribute with attribution.
